@@ -28,6 +28,9 @@ const inputNumber = (number) => {
     if(number === "." && currentNumber.includes(".")){
         return
     }
+    if(number === "0" && currentNumber.includes("0")){
+        return
+    }
     //SETS INPUT NUMBER TO CURRENTNUMBER AS A STRING
     currentNumber = currentNumber.toString() + number 
     
