@@ -29,7 +29,8 @@ const inputNumber = (number) => {
         return
     }
     //SETS INPUT NUMBER TO CURRENTNUMBER AS A STRING
-    currentNumber = currentNumber.toString() + number
+    currentNumber = currentNumber.toString() + number 
+    
 }
 //SELECTS OPERATER
 const selectOperater = (operation) => {
@@ -76,7 +77,7 @@ const calculate = () => {
         else{
             return
         }
-    
+        //ROUNDS DECIMAL
         if(result % 1 !== 0){
             result = Math.round(result)
         }
