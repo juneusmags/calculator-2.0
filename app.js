@@ -1,11 +1,11 @@
 //ELEMENTS
-var allNumbers = document.querySelectorAll("#number")
-var allOperations = document.querySelectorAll("#operation")
-var equals = document.querySelector("#equals")
-var deleteSingle = document.querySelector("#delete")
-var prevDisplay = document.querySelector("#previous-display")
-var currentDisplay = document.querySelector("#current-display")
-var clearAll = document.querySelector("#clear")
+let allNumbers = document.querySelectorAll("#number")
+let allOperations = document.querySelectorAll("#operation")
+let equals = document.querySelector("#equals")
+let deleteSingle = document.querySelector("#delete")
+let prevDisplay = document.querySelector("#previous-display")
+let currentDisplay = document.querySelector("#current-display")
+let clearAll = document.querySelector("#clear")
 
 //VARIABLES
 let operater = ""
@@ -28,11 +28,21 @@ const inputNumber = (number) => {
     if(number === "." && currentNumber.includes(".")){
         return
     }
-    if(number === "0" && currentNumber.includes("0")){
+    if(number === "0" && currentNumber === "0"){
         return
     }
+        
+    
+    if(currentNumber === "0" && number !== 0){
+        currentNumber = number
+    }
+    else{
+        currentNumber = currentNumber.toString() + number
+    }
+
+    
     //SETS INPUT NUMBER TO CURRENTNUMBER AS A STRING
-    currentNumber = currentNumber.toString() + number 
+     
     
 }
 //SELECTS OPERATER
@@ -82,7 +92,8 @@ const calculate = () => {
         }
         //ROUNDS DECIMAL
         if(result % 1 !== 0){
-            result = Math.round(result)
+            result = result.toFixed(6)
+        
         }
         
         currentNumber = result
@@ -127,3 +138,60 @@ deleteSingle.addEventListener("click", ()=>{
     backSpace()
     updateDisplay()
 })
+
+
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "1") {
+      inputNumber("1");
+      updateDisplay();
+    } else if (e.key === "2") {
+      inputNumber("2");
+      updateDisplay();
+    } else if (e.key === "3") {
+      inputNumber("3");
+      updateDisplay();
+    } else if (e.key === "4") {
+      inputNumber("4");
+      updateDisplay();
+    } else if (e.key === "5") {
+      inputNumber("5");
+      updateDisplay();
+    } else if (e.key === "6") {
+      inputNumber("6");
+      updateDisplay();
+    } else if (e.key === "7") {
+      inputNumber("7");
+      updateDisplay();
+    } else if (e.key === "8") {
+      inputNumber("8");
+      updateDisplay();
+    } else if (e.key === "9") {
+      inputNumber("9");
+      updateDisplay();
+    } else if (e.key === "0") {
+      inputNumber("0");
+      updateDisplay();
+    } else if (e.key === "+" && "Shift") {
+      selectOperater("+");
+    } else if (e.key === "-") {
+      selectOperater("-");
+    } else if (e.key === "x") {
+      selectOperater("X");
+    } else if (e.key === "/") {
+      selectOperater("÷");
+    } else if (e.key === ".") {
+      inputNumber(".");
+    } else if (e.key === "Backspace") {
+      backSpace();
+      updateDisplay();
+    } else if (e.key === "Escape") {
+      clear();
+      updateDisplay();
+    } else if (e.key === "Enter") {
+        calculate();
+        updateDisplay();
+    }
+    console.log(currentNumber)
+    console.log(e.key)
+});
